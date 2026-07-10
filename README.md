@@ -43,5 +43,6 @@ Grafana : http://localhost:3001 (admin/admin)
 
 ## Test de performance
 Outil choisi : k6
-Raison : k6 est leger, scriptable en JavaScript, et genere des rapports HTML clairs.
+Raison : k6 est leger, scriptable en JavaScript, et genere des rapports HTML clairs. On l'a utilise en cours pour tester des APIs HTTP.
 docker run --rm -i --network host grafana/k6 run - < performance/script.js
+
