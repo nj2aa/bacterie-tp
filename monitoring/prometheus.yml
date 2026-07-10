@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: "stable"
+    static_configs:
+      - targets: ["stable:8001"]
+  - job_name: "hypertrophie"
+    static_configs:
+      - targets: ["hypertrophie:8002"]
+  - job_name: "atrophie"
+    static_configs:
+      - targets: ["atrophie:8003"]
+  - job_name: "stable_impasse"
+    static_configs:
+      - targets: ["stable_impasse:8004"]

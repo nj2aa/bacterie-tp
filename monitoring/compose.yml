@@ -1,0 +1,20 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    networks:
+      - bacterie-tp_default
+
+  grafana:
+    image: grafana/grafana-enterprise
+    ports:
+      - "3001:3000"
+    networks:
+      - bacterie-tp_default
+
+networks:
+  bacterie-tp_default:
+    external: true
