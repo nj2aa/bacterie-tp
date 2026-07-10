@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  containers:
+  - name: web
+    image: bacterie-tp-web:latest
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 5000
+    env:
+    - name: STABLE_HOST
+      value: "stable"
+    - name: HYPERTROPHIE_HOST
+      value: "hypertrophie"
+    - name: ATROPHIE_HOST
+      value: "atrophie"
+    - name: STABLE_IMPASSE_HOST
+      value: "stable-impasse"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  selector:
+    app: web
+  type: NodePort
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 30500

@@ -1,0 +1,49 @@
+services:
+  stable:
+    build:
+      context: .
+      dockerfile: stable/Dockerfile
+    ports:
+      - "50051:50051"
+      - "8001:8001"
+
+  hypertrophie:
+    build:
+      context: .
+      dockerfile: hypertrophie/Dockerfile
+    ports:
+      - "50052:50052"
+      - "8002:8002"
+
+  atrophie:
+    build:
+      context: .
+      dockerfile: atrophie/Dockerfile
+    ports:
+      - "50053:50053"
+      - "8003:8003"
+
+  stable_impasse:
+    build:
+      context: .
+      dockerfile: stable_impasse/Dockerfile
+    ports:
+      - "50054:50054"
+      - "8004:8004"
+
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    ports:
+      - "5001:5000"
+    environment:
+      - STABLE_HOST=stable
+      - HYPERTROPHIE_HOST=hypertrophie
+      - ATROPHIE_HOST=atrophie
+      - STABLE_IMPASSE_HOST=stable_impasse
+    depends_on:
+      - stable
+      - hypertrophie
+      - atrophie
+      - stable_impasse

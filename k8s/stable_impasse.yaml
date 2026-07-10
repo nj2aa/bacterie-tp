@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stable-impasse
+  labels:
+    app: stable-impasse
+spec:
+  containers:
+  - name: stable-impasse
+    image: bacterie-tp-stable_impasse:latest
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 50054
+    - containerPort: 8004
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stable-impasse
+spec:
+  selector:
+    app: stable-impasse
+  ports:
+  - name: grpc
+    port: 50054
+    targetPort: 50054
+  - name: metrics
+    port: 8004
+    targetPort: 8004

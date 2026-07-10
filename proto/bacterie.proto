@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package bacterie;
+
+service BacterieService {
+  rpc Consume (ConsumeRequest) returns (ConsumeReply) {}
+}
+
+message ConsumeRequest {
+  string original_state = 1;
+  float volume = 2;
+}
+
+message ConsumeReply {
+  string next_state = 1;
+  float volume = 2;
+  repeated string available_states = 3;
+}

@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: atrophie
+  labels:
+    app: atrophie
+spec:
+  containers:
+  - name: atrophie
+    image: bacterie-tp-atrophie:latest
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 50053
+    - containerPort: 8003
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: atrophie
+spec:
+  selector:
+    app: atrophie
+  ports:
+  - name: grpc
+    port: 50053
+    targetPort: 50053
+  - name: metrics
+    port: 8003
+    targetPort: 8003

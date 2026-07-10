@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stable
+  labels:
+    app: stable
+spec:
+  containers:
+  - name: stable
+    image: bacterie-tp-stable:latest
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 50051
+    - containerPort: 8001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stable
+spec:
+  selector:
+    app: stable
+  ports:
+  - name: grpc
+    port: 50051
+    targetPort: 50051
+  - name: metrics
+    port: 8001
+    targetPort: 8001
